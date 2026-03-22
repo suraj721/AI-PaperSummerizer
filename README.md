@@ -58,6 +58,20 @@ A full-stack application to analyze research papers using FastAPI, React, and Op
    The frontend will be available at `http://localhost:5173`.
 
 
+## Deployment
+
+You can easily deploy this full-stack app using [Render](https://render.com).
+
+### Quick Deploy (Render)
+1. Fork or push this repository to your GitHub account.
+2. Sign up/Log in to Render.
+3. Go to the **Blueprints** tab and click **New Blueprint Instance**.
+4. Connect your GitHub repository.
+5. Render will automatically read the `render.yaml` file and set up both the backend (Web Service) and frontend (Static Site).
+6. In the Render dashboard, go to the Backend service's Environment variables and set your `OPENAI_API_KEY`.
+
+Alternatively, you can deploy the `backend` folder to any service that supports Python (Heroku, Railway, AWS) using the provided `Procfile` and deploy the `frontend` statically (Netlify, Vercel).
+
 ## Usage
 1. Open the web app.
 2. Upload a research paper PDF.
