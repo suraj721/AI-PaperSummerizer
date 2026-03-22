@@ -2,7 +2,8 @@ import React, { useState, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 import './App.css';
 
-const API_BASE = "http://localhost:8000";
+// Use environment variable for API URL in production, fallback to localhost for development
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
 
 function App() {
