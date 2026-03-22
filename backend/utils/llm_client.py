@@ -2,12 +2,16 @@ import os
 from openai import OpenAI
 from dotenv import load_dotenv
 
-load_dotenv()
-
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+def get_client():
+    load_dotenv(override=True)
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key or "your-api-key-here" in api_key:
+        raise ValueError("OPENAI_API_KEY environment variable is not set with a real key in .env")
+    return OpenAI(api_key=api_key)
 
 def analyze_paper_content(content):
     """Sends paper content to OpenAI for structured analysis."""
+    client = get_client()
     # For very long papers, we might only send the first few chunks or a summary of chunks
     # For this implementation, we'll focus on the first 15000 chars to stay within common context limits
     # but a better way is to summarize chunks (omitted for brevity in initial version)
@@ -37,6 +41,7 @@ def analyze_paper_content(content):
 
 def chat_with_paper(question, context):
     """Answers questions based on the paper context."""
+    client = get_client()
     snippet = context[:15000]
     
     response = client.chat.completions.create(
