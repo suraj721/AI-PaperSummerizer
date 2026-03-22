@@ -3,11 +3,12 @@ services:
   - type: web
     name: ai-paper-analyzer-backend
     env: python
-    buildCommand: "cd backend && pip install -r requirements.txt"
-    startCommand: "cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT"
+    rootDir: backend
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn main:app --host 0.0.0.0 --port $PORT"
     envVars:
       - key: PYTHON_VERSION
-        value: 3.10.0
+        value: 3.12.0
       - key: OPENAI_API_KEY
         sync: false
 
@@ -15,8 +16,9 @@ services:
   - type: web
     name: ai-paper-analyzer-frontend
     env: static
-    buildCommand: "cd frontend && npm install && npm run build"
-    staticPublishPath: "./frontend/dist"
+    rootDir: frontend
+    buildCommand: "npm install && npm run build"
+    staticPublishPath: "./dist"
     envVars:
       - key: VITE_API_URL
         fromService:
