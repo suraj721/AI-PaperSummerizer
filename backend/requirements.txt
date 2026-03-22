@@ -1,7 +1,7 @@
 fastapi
 uvicorn
 python-multipart
-pdfplumber
+pypdf
 openai
 python-dotenv
 pydantic
